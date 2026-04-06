@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/auth';
 import {
   connectNDK,
@@ -19,7 +19,15 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [method, setMethod] = useState<LoginMethod | null>(null);
   const [nsecInput, setNsecInput] = useState('');
   const [bunkerInput, setBunkerInput] = useState('');
+  const [extensionAvailable, setExtensionAvailable] = useState(false);
   const { setUser, setLoading, setError, isLoading, error } = useAuthStore();
+
+  // Check if extension is available on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.nostr) {
+      setExtensionAvailable(true);
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -34,6 +42,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
       switch (loginMethod) {
         case 'extension':
+          if (!window.nostr) {
+            throw new Error('Nostr extension not detected. Make sure Alby or nos2x is installed and tap the extension icon.');
+          }
           user = await loginWithExtension();
           break;
         case 'nsec':
@@ -85,8 +96,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             {/* Extension (Alby) */}
             <button
               onClick={() => handleLogin('extension')}
-              disabled={isLoading}
-              className="w-full flex items-center gap-3 p-4 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 rounded-xl transition disabled:opacity-50"
+              disabled={isLoading || !extensionAvailable}
+              className={`w-full flex items-center gap-3 p-4 rounded-xl transition ${
+                extensionAvailable
+                  ? 'bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30'
+                  : 'bg-zinc-800/30 border border-zinc-700/30 opacity-50 cursor-not-allowed'
+              }`}
             >
               <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
                 <span className="text-xl">🦊</span>

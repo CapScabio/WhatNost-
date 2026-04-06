@@ -31,18 +31,27 @@ export async function connectNDK(): Promise<NDK> {
 export type LoginMethod = 'extension' | 'nsec' | 'bunker';
 
 export async function loginWithExtension(): Promise<NDKUser | null> {
-  if (typeof window === 'undefined' || !window.nostr) {
-    throw new Error('No Nostr extension found. Install Alby or nos2x.');
+  if (typeof window === 'undefined') {
+    throw new Error('NIP-07 login only works in the browser');
   }
-  
+
   const ndk = getNDK();
-  const signer = new NDKNip07Signer();
+
+  // Pass NDK to the signer so the returned user is bound to the same instance.
+  const signer = new NDKNip07Signer(4000, ndk);
   ndk.signer = signer;
-  
-  const user = await signer.user();
-  await user.fetchProfile();
-  
-  return user;
+
+  try {
+    // Explicitly request access and wait for the extension to be ready.
+    const user = await signer.blockUntilReady();
+    await user.fetchProfile();
+    return user;
+  } catch (error) {
+    if (!window.nostr) {
+      throw new Error('No NIP-07 extension found. Install Alby or another Nostr extension.');
+    }
+    throw error;
+  }
 }
 
 export async function loginWithNsec(nsec: string): Promise<NDKUser | null> {

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type Section = 'profile' | 'badges';
+export type Section = 'onboarding' | 'profile' | 'badges' | 'marketplace';
 
 interface NavState {
   activeSection: Section;
@@ -8,6 +8,6 @@ interface NavState {
 }
 
 export const useNavStore = create<NavState>()((set) => ({
-  activeSection: 'profile',
+  activeSection: 'onboarding', // Default to onboarding or evaluate dynamically
   setActiveSection: (section) => set({ activeSection: section }),
 }));

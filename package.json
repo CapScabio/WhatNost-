@@ -13,11 +13,15 @@
     "@noble/secp256k1": "^3.0.0",
     "@nostr-dev-kit/ndk": "^3.0.3",
     "@nostr-dev-kit/ndk-cache-dexie": "^2.6.44",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
     "next": "16.2.2",
     "nostr-tools": "^2.23.3",
     "qrcode.react": "^4.2.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "tailwind-merge": "^3.5.0",
     "zustand": "^5.0.12"
   },
   "devDependencies": {

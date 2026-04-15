@@ -116,17 +116,25 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <button
-                onClick={() => setShowLogin(true)}
-                className="lc-pill lc-pill-primary text-sm flex items-center gap-2"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
-                  <polyline points="10 17 15 12 10 7"/>
-                  <line x1="15" y1="12" x2="3" y2="12"/>
-                </svg>
-                Connect
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setActiveSection('onboarding')}
+                  className="px-4 py-2 bg-lc-purple hover:bg-lc-purple/90 text-white rounded-lg font-semibold text-sm transition-all"
+                >
+                  Empezar Aquí
+                </button>
+                <button
+                  onClick={() => setShowLogin(true)}
+                  className="lc-pill lc-pill-primary text-sm flex items-center gap-2"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
+                    <polyline points="10 17 15 12 10 7"/>
+                    <line x1="15" y1="12" x2="3" y2="12"/>
+                  </svg>
+                  Connect
+                </button>
+              </div>
             )}
           </div>
         </div>

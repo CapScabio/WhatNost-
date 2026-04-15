@@ -1,8 +1,9 @@
 'use client';
 
 import Navbar from '@/components/Navbar';
-import Profile from '@/components/Profile';
+import ProfileEditor from '@/components/Dashboard/ProfileEditor';
 import Badges from '@/components/Badges';
+import OnboardingWizard from '@/components/Onboarding/OnboardingWizard';
 import { useAuthStore } from '@/store/auth';
 import { useNavStore } from '@/store/nav';
 
@@ -13,11 +14,14 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-lc-black lc-grid-bg">
       <Navbar />
-      {!isConnected || activeSection === 'profile' ? (
-        <Profile />
+      {!isConnected && activeSection === 'onboarding' ? (
+        <OnboardingWizard />
+      ) : activeSection === 'profile' || (!isConnected && activeSection !== 'onboarding') ? (
+        <ProfileEditor />
       ) : activeSection === 'badges' ? (
         <Badges />
       ) : null}
     </main>
   );
 }
+

@@ -1,88 +1,70 @@
-# 🔐 Nostr Starter Kit
+<div align="center">
+  <img src="https://nostr.com/images/nostr-logo-black.png" width="100" />
+  <h1>WhatNost?</h1>
+  <p><strong>El Onboarding Definitivo para Nostr 🚀</strong></p>
+  <p><i>Construido para la Hackathon <b>IDENTITY</b> de La Crypta (Abril 2026)</i></p>
 
-Starter kit para la hackathon **IDENTITY** de La Crypta — Abril 2026.
-
-Conectate a Nostr con extensión (Alby), nsec, o bunker. Mirá tu perfil como si fuera Twitter.
-
-## Quick Start
-
-```bash
-# Clonar
-git clone https://github.com/lacrypta/nostr-starter
-cd nostr-starter
-
-# Instalar
-npm install
-
-# Correr
-npm run dev
-```
-
-Abrí [http://localhost:3000](http://localhost:3000)
-
-## Features
-
-- 🔑 **3 métodos de login:** Extension (Alby/nos2x), nsec, Bunker (NIP-46)
-- 👤 **Perfil completo:** Avatar, banner, bio, links, Lightning address
-- 📊 **Stats:** Followers, following, cantidad de notas
-- 📝 **Timeline:** Tus últimas notas con timestamps relativos
-- 🌐 **Multi-relay:** Conecta a Damus, Nostr.band, nos.lol, Primal
-
-## Stack
-
-- [Next.js 16](https://nextjs.org/) + TypeScript
-- [Tailwind CSS](https://tailwindcss.com/)
-- [NDK](https://ndk.fyi/) (Nostr Dev Kit)
-- [Zustand](https://zustand-demo.pmnd.rs/) (State)
-
-## Estructura
-
-```
-src/
-├── components/
-│   ├── Navbar.tsx      # Navegación + botón login
-│   ├── LoginModal.tsx  # Modal de autenticación
-│   └── Profile.tsx     # Vista de perfil
-├── lib/
-│   └── nostr.ts        # Funciones Nostr
-└── store/
-    └── auth.ts         # Estado de autenticación
-```
-
-## NIPs Utilizados
-
-- **NIP-01:** Basic protocol
-- **NIP-02:** Contact list (following)
-- **NIP-05:** DNS-based verification
-- **NIP-07:** Browser extension
-- **NIP-46:** Nostr Connect (bunker)
-
-## Ideas para tu Proyecto
-
-1. **Perfil Público** — Ver perfil de cualquier npub
-2. **Editor de Perfil** — Actualizar kind 0
-3. **Verificador NIP-05** — Check de identidad
-4. **Social Feed** — Timeline de seguidos
-5. **Nostr Login** — Auth para tu app con Nostr
-6. **Badge System** — Badges verificables
-7. **Reputation Score** — Basado en follows/WoT
-
-## Recursos
-
-- 📚 [Nostr Protocol](https://nostr.com)
-- 📖 [NIPs](https://github.com/nostr-protocol/nips)
-- 🛠️ [NDK Docs](https://ndk.fyi)
-- 🦊 [Alby Extension](https://getalby.com)
-
-## Hackathon
-
-**IDENTITY — Nostr Identity & Social**
-
-- 📅 Abril 2026
-- ⭐ Nivel: Beginner
-- 💰 Premios: 1,000,000 sats
-- 📝 [Inscribite](https://tally.so/r/9qDNEY)
+  <p>
+    <a href="#-el-problema">El Problema</a> •
+    <a href="#-la-solución">La Solución</a> •
+    <a href="#-features">Features</a> •
+    <a href="#-quick-start">Quick Start</a>
+  </p>
+</div>
 
 ---
 
-Built with ⚡ by [La Crypta](https://lacrypta.ar)
+## 🤔 El Problema
+La red Nostr es una revolución criptográfica, pero su curva de aprendizaje asusta a los usuarios comunes. Hablamos de *nsecs*, *npubs*, relays, NIP-05, clientes, web de confianza... Demasiados tecnicismos para alguien que solo quiere crear una cuenta y hablar con el mundo sin ser censurado.
+
+## 💡 La Solución
+**WhatNost?** es una DApp diseñada específicamente para mitigar la fricción inicial y convertir un proceso abstracto en una experiencia premium tipo *Linktree* web2, guiando a los nuevos usuarios paso a paso:
+
+1. **Generación Mágica:** Creamos la criptografía en la consola sin asustar al usuario.
+2. **Pedagogía de Seguridad:** Una UX que **obliga** al usuario a guardar su `nsec` (clave privada) de la forma correcta antes de continuar, sin sacrificar comodidad.
+3. **Dashboard Bento-Box:** Un gestor de perfil (NIP-01) en tiempo real con Live Previews, emulando la facilidad de armar un perfil en Instagram o Twitter.
+4. **Verificación Instantánea (Mock NIP-05):** ¿Cansado de llaves raras? Los usuarios pueden comprar en 2 clics su handle `@whatnost.com` pagando vía Lightning Network.
+
+---
+
+## ✨ Features
+
+- 🌈 **Diseño Premium:** Interfaz oscura, elegante, con transiciones impulsadas por `framer-motion` y utilidades de `lucide-react`.
+- 🔑 **Llévate tus Llaves (Login):** Autenticación sin servidores ni contraseñas. Funciona vía nsec, NIP-07 (Alby) o Nostr Connect (Bunker).
+- 🎨 **Visualizador en Vivo:** Todo lo que escribes en tu perfil Kind 0 se ve instantáneamente reflejado en un "teléfono virtual" en pantalla.
+- ⚡ **Lightning Ready:** Preparado para integrar facturas nativas y monetizar la validación de identidad.
+
+---
+
+## 🛠 Stack Tecnológico
+
+- **Framework:** Next.js 16 (App Router) + TypeScript
+- **Estilos:** Tailwind CSS v4 + Framer Motion
+- **Protocolo Nostr:** `@nostr-dev-kit/ndk` + `nostr-tools`
+- **Gestión de Estado:** Zustand
+
+---
+
+## 🚀 Quick Start (Local)
+
+Para correr este proyecto en tu entorno local:
+
+```bash
+# 1. Clona este repositorio
+git clone https://github.com/lacrypta/nostr-starter  # (O el link original de tu repo forkeado)
+cd nostr-starter
+
+# 2. Instala dependencias web y animaciones
+npm install
+
+# 3. Corre el servidor
+npm run dev
+```
+
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador y experimenta el mejor Onboarding del protocolo Nostr.
+
+---
+
+<div align="center">
+  <p>Construido con ⚡ por Santiago para <b>La Crypta</b></p>
+</div>

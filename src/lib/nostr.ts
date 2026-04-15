@@ -1,5 +1,5 @@
 import NDK, { NDKEvent, NDKUser, NDKNip07Signer, NDKPrivateKeySigner } from '@nostr-dev-kit/ndk';
-import { nip19 } from 'nostr-tools';
+import { nip19, getPublicKey } from 'nostr-tools';
 
 // Popular relays (high availability)
 const POPULAR_RELAYS = [
@@ -331,12 +331,10 @@ export function formatTimestamp(timestamp: number): string {
 // NEW ONBOARDING HELPERS
 // ==========================================
 
-export function generateIdentity(): { nsec: string; npub: string } {
-  // Use NDKPrivateKeySigner which uses noble-secp256k1 under the hood
+export function generateIdentity(): { nsec: string; npub: string; privkey: string } {
   const signer = NDKPrivateKeySigner.generate();
   if (!signer.privateKey) throw new Error("Failed to generate private key");
   
-  // Convert hex private key to Uint8Array for nsecEncode
   const hexToBytes = (hex: string) => {
     const bytes = new Uint8Array(hex.length / 2);
     for (let i = 0; i < hex.length; i += 2) {
@@ -345,14 +343,12 @@ export function generateIdentity(): { nsec: string; npub: string } {
     return bytes;
   };
 
-  const nsec = nip19.nsecEncode(hexToBytes(signer.privateKey));
+  const privkeyBytes = hexToBytes(signer.privateKey);
+  const nsec = nip19.nsecEncode(privkeyBytes);
+  const pubkeyHex = getPublicKey(privkeyBytes);
+  const npub = nip19.npubEncode(pubkeyHex);
   
-  // Note: we can get the pubkey from the signer or fetch it later,
-  // but let's just return what's needed or use nostr-tools explicitly
-  // Actually, NDKPrivateKeySigner doesn't expose pubkey synchronously without an ndk instance
-  // We'll decode using nostr-tools which we'd need to import 'getPublicKey'. 
-  // For simplicity, let's just return nsec, and login will give the rest
-  return { nsec, npub: "" }; 
+  return { nsec, npub, privkey: signer.privateKey }; 
 }
 
 export async function publishProfile(profile: NostrProfile): Promise<NDKEvent> {

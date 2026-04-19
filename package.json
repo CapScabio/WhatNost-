@@ -1,6 +1,7 @@
 {
-  "name": "nostr-starter",
-  "version": "0.1.0",
+  "name": "whatnost",
+  "version": "1.0.0",
+  "description": "WhatNost? - El onboarding definitivo para Nostr Identity",
   "private": true,
   "scripts": {
     "dev": "next dev",

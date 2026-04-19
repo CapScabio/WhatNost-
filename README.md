@@ -22,8 +22,7 @@ La red Nostr es una revolución criptográfica, pero su curva de aprendizaje asu
 
 1. **Generación Mágica:** Creamos la criptografía en la consola sin asustar al usuario.
 2. **Pedagogía de Seguridad:** Una UX que **obliga** al usuario a guardar su `nsec` (clave privada) de la forma correcta antes de continuar, sin sacrificar comodidad.
-3. **Dashboard Bento-Box:** Un gestor de perfil (NIP-01) en tiempo real con Live Previews, emulando la facilidad de armar un perfil en Instagram o Twitter.
-4. **Verificación Instantánea (Mock NIP-05):** ¿Cansado de llaves raras? Los usuarios pueden comprar en 2 clics su handle `@whatnost.com` pagando vía Lightning Network.
+3. **Dashboard Bento-Box:** Un gestor de perfil (NIP-01) en tiempo real con Live Previews, emulando la facilidad de armar un perfil en Instagram o Twitter. Trae integración de tu propia Lightning Address como wallet.
 
 ---
 
@@ -31,8 +30,8 @@ La red Nostr es una revolución criptográfica, pero su curva de aprendizaje asu
 
 - 🌈 **Diseño Premium:** Interfaz oscura, elegante, con transiciones impulsadas por `framer-motion` y utilidades de `lucide-react`.
 - 🔑 **Llévate tus Llaves (Login):** Autenticación sin servidores ni contraseñas. Funciona vía nsec, NIP-07 (Alby) o Nostr Connect (Bunker).
-- 🎨 **Visualizador en Vivo:** Todo lo que escribes en tu perfil Kind 0 se ve instantáneamente reflejado en un "teléfono virtual" en pantalla.
-- ⚡ **Lightning Ready:** Preparado para integrar facturas nativas y monetizar la validación de identidad.
+- 🎨 **Visualizador en Vivo Bento-Box:** Todo lo que escribes en tu perfil Kind 0 se ve instantáneamente reflejado en un "teléfono virtual" en pantalla.
+- ⚡ **Lightning Ready:** Trae a tu propia wallet Lightning (vía LUD-16) y exhibe tu Verificación NIP-05.
 
 ---
 
@@ -51,8 +50,8 @@ Para correr este proyecto en tu entorno local:
 
 ```bash
 # 1. Clona este repositorio
-git clone https://github.com/lacrypta/nostr-starter  # (O el link original de tu repo forkeado)
-cd nostr-starter
+git clone https://github.com/CapScabio/whatnost.git
+cd whatnost
 
 # 2. Instala dependencias web y animaciones
 npm install

@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Nostr Starter Kit - La Crypta Hackathon',
-  description: 'Build your first Nostr app. Connect with extension, nsec, or bunker.',
+  title: 'WhatNost? | El Onboarding Definitivo para Nostr',
+  description: 'Crea, gestiona y comparte tu Identidad Nostr en segundos. Sin emails, sin contraseñas.',
 };
 
 export default function RootLayout({
